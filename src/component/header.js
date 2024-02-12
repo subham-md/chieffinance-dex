@@ -31,11 +31,11 @@ function Header(props) {
   return (
     <>
       <HeaderBx>
-        <div className='logo'><img src={LogoImg}/></div>
+        <Link to="/" className='logo'><img src={LogoImg}/></Link>
         <Menu className={`${isShowMenu ? 'ShowMenu' : ''}`}>
-          <a>Pool</a>
-          <a>Exchange</a>
-          <a>Bridge</a>
+          <Link>Pool</Link>
+          <Link to='/exchange'>Exchange</Link>
+          <Link>Bridge</Link>
           <Gs.BtnSm onClick={toggleSelectToken}><img src={WalletIco} alt='Wallet'/>Connect Wallet</Gs.BtnSm>
         </Menu>
         <div className='HeaderRight'>

@@ -38,6 +38,12 @@ const ExchangePage = (props) => {
         setMngTokenVisible(!isMngTokenVisible);
         setSelectTokenVisible(false);
     };
+
+    // Tabs
+    const [activeTab, setActiveTab] = useState(0);
+    const handleTabClick = (index) => {
+        setActiveTab(index);
+    };
     return (
         <>   
             <ExchangeBg>
@@ -49,62 +55,68 @@ const ExchangePage = (props) => {
                     <ExchangeBx>
                         <ExchangeTop>
                             <TabMain>
-                                <a className='active'>Exchange</a>
-                                <a>Pool</a>
+                                <a className={activeTab === 0 ? 'active' : ''} onClick={() => handleTabClick(0)} >Exchange</a>
+                                <a className={activeTab === 1 ? 'active' : ''} onClick={() => handleTabClick(1)}>Pool</a>
                             </TabMain>
                             
                             <a className='rightBtns'><img src={resetIco} alt='reset' /></a>
                             <a className='rightBtns'><img src={chartIco} alt='chart' /></a>
                         </ExchangeTop>
-                        <AmountBox>
-                            <ExBox>
-                                <div className='input-container'>
-                                    <label htmlFor='yousend'>Availability: 0 USDT</label>
-                                    <input type='type' id='yousend' className='' placeholder='0.000' name=''  />
-                                    <b>MAX</b>
-                                </div>
-                                <DropSelect className='ExBox-right'>
-                                    <a onClick={toggleSelectToken} className='selectBtn'><img className='token' src={Thr} alt='' />
-                                        <span>Tether</span>
-                                        <img className='arrow' src={Dwn} alt='' />
-                                    </a>
-                                </DropSelect>
-                            </ExBox>
-                            <Gs.Percent>
-                                <a className='active'>25%</a>
-                                <a>50%</a>
-                                <a>75%</a>
-                                <a>100%</a>
-                            </Gs.Percent>
-                        </AmountBox>
-                        <Switch><a className='switch'><img src={Swap} alt='Swap'/></a></Switch>
-                        <AmountBox>
-                            <ExBox>
-                                <div className='input-container'>
-                                    <label htmlFor='yousend'>Availability: 0 USDT</label>
-                                    <input type='type' id='yousend' className='' placeholder='0.000' name=''  />
-                                    <b>MAX</b>
-                                </div>
-                                <DropSelect className='ExBox-right'>
-                                    <a onClick={toggleSelectToken} className='selectBtn'><img className='token' src={Thr} alt='' />
-                                        <span>Tether</span>
-                                        <img className='arrow' src={Dwn} alt='' />
-                                    </a>
-                                </DropSelect>
-                            </ExBox>
-                            <Gs.Percent>
-                                <a className='active'>25%</a>
-                                <a>50%</a>
-                                <a>75%</a>
-                                <a>100%</a>
-                            </Gs.Percent>
-                        </AmountBox>
-                        <InfoSec>
-                            <p>Price <span>10 WBTC per ETH</span></p>
-                            <p>Slippage Tolerance <i><img width={20} src={InfoIco} /></i> <a><img width={16} src={SettingIco} /></a> 
-                            <span>0.5%</span></p>
-                        </InfoSec>
-                        <Gs.BtnSm onClick={toggleConfirmPop} className='lg'><img src={WalletIco} alt='Wallet'/> Connect Wallet</Gs.BtnSm>
+                        {activeTab === 0 &&
+                        <TabContainer>
+                            <AmountBox>
+                                <ExBox>
+                                    <div className='input-container'>
+                                        <label htmlFor='yousend'>Availability: 0 USDT</label>
+                                        <input type='type' id='yousend' className='' placeholder='0.000' name=''  />
+                                        <b>MAX</b>
+                                    </div>
+                                    <DropSelect className='ExBox-right'>
+                                        <a onClick={toggleSelectToken} className='selectBtn'><img className='token' src={Thr} alt='' />
+                                            <span>Tether</span>
+                                            <img className='arrow' src={Dwn} alt='' />
+                                        </a>
+                                    </DropSelect>
+                                </ExBox>
+                                <Gs.Percent>
+                                    <a className='active'>25%</a>
+                                    <a>50%</a>
+                                    <a>75%</a>
+                                    <a>100%</a>
+                                </Gs.Percent>
+                            </AmountBox>
+                            <Switch><a className='switch'><img src={Swap} alt='Swap'/></a></Switch>
+                            <AmountBox>
+                                <ExBox>
+                                    <div className='input-container'>
+                                        <label htmlFor='yousend'>Availability: 0 USDT</label>
+                                        <input type='type' id='yousend' className='' placeholder='0.000' name=''  />
+                                        <b>MAX</b>
+                                    </div>
+                                    <DropSelect className='ExBox-right'>
+                                        <a onClick={toggleSelectToken} className='selectBtn'><img className='token' src={Thr} alt='' />
+                                            <span>Tether</span>
+                                            <img className='arrow' src={Dwn} alt='' />
+                                        </a>
+                                    </DropSelect>
+                                </ExBox>
+                                <Gs.Percent>
+                                    <a className='active'>25%</a>
+                                    <a>50%</a>
+                                    <a>75%</a>
+                                    <a>100%</a>
+                                </Gs.Percent>
+                            </AmountBox>
+                            <InfoSec>
+                                <p>Price <span>10 WBTC per ETH</span></p>
+                                <p>Slippage Tolerance <i><img width={20} src={InfoIco} /></i> <a><img width={16} src={SettingIco} /></a> 
+                                <span>0.5%</span></p>
+                            </InfoSec>
+                            <Gs.BtnSm onClick={toggleConfirmPop} className='lg'><img src={WalletIco} alt='Wallet'/> Connect Wallet</Gs.BtnSm>
+                        </TabContainer>}
+                        {activeTab === 1 && <TabContainer>
+                            {/* <Pool/> */}
+                        </TabContainer>}
                     </ExchangeBx>
                 </Gs.Container>
             </ExchangeBg>
@@ -195,6 +207,7 @@ const InfoSec = styled.div `
 const ChartSec = styled.div `
     background: #fff; border-radius: 20px; overflow: hidden; padding: 10px 10px 0; width: 865px;
 `
-
+const TabContainer = styled.div `
+`
 
 export default ExchangePage;

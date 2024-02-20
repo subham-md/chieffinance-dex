@@ -15,7 +15,7 @@ const ExchangePops = ({onClose }) => {
     return (
         <Gs.PopupMain>
             <Gs.OverLay onClick={onClose} />
-            {/* <Gs.Popup>
+            <Gs.Popup>
                 <h3>Setting 
                     <a onClick={onClose} className='close'><img width={12} src={cross} alt='cross'/></a>
                 </h3>
@@ -36,7 +36,7 @@ const ExchangePops = ({onClose }) => {
                     <Gs.BtnSm className='secondary'>Cancel</Gs.BtnSm>
                     <Gs.BtnSm>Save</Gs.BtnSm>
                 </BtnCont>
-            </Gs.Popup> */}
+            </Gs.Popup>
 
             {/* <Gs.Popup>
                 <Wating>
@@ -62,13 +62,13 @@ const ExchangePops = ({onClose }) => {
                 <Gs.BtnSm className='lg'>Ok</Gs.BtnSm>
             </Gs.Popup> */}
 
-            <Gs.Popup>
+            {/* <Gs.Popup>
                 <ConformTxt>
                     <img width={45} src={confirmIco} />
                     <h4>Confirmed</h4>
                     <p><a className='color-blue'>View in Explorer</a></p>
                 </ConformTxt>                
-            </Gs.Popup>
+            </Gs.Popup> */}
 
             
         </Gs.PopupMain>

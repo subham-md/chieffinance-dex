@@ -42,7 +42,9 @@ Gs.Container = styled.div`
 Gs.BtnSm = styled.a`
   background: var(--primary); padding: 0 26px; margin: 0 auto; height: 45px; text-align: center; font-size: 18px; display: inline-flex; align-items: center; justify-content: center; border-radius: 5px; font-weight: 600; color: #fff; transition: all 0.3s ease-in-out 0s; line-height: 1;
   img {margin-right: 6px;}
-  &.lg {width:100%;}
+  &.lg {width:100%;
+    & + & {margin-top: 20px;}
+  }
   &:hover {background: var(--txtColor);}
   &.secondary {background: none; border: 1px solid var(--txtLight2); color: var(--txtLight);
     &:hover {border: 1px solid var(--txtColor); background: var(--txtColor); color: #fff;}

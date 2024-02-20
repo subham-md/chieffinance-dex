@@ -5,6 +5,7 @@ import Media from './../theme/media-breackpoint';
 import SelectToken from './../component/selecttoken'; 
 import ConfirmExchange from './../component/confirmExchange'; 
 import ManageToken from './../component/ManageToken'; 
+import PoolTab from './../component/PoolTab'; 
 import ExchangePops from './../component/ExchangePops'; 
 import { Link, NavLink } from 'react-router-dom' 
 import OwlCarousel from 'react-owl-carousel-rtl'
@@ -115,9 +116,10 @@ const ExchangePage = (props) => {
                             <Gs.BtnSm onClick={toggleConfirmPop} className='lg'><img src={WalletIco} alt='Wallet'/> Connect Wallet</Gs.BtnSm>
                         </TabContainer>}
                         {activeTab === 1 && <TabContainer>
-                            {/* <Pool/> */}
+                            <PoolTab />
                         </TabContainer>}
                     </ExchangeBx>
+                    {activeTab === 1 && <SeeAllBtn><a>See all available pools</a></SeeAllBtn>}
                 </Gs.Container>
             </ExchangeBg>
 
@@ -131,11 +133,12 @@ const ExchangePage = (props) => {
 }
 
 const ExchangeBg = styled.section `
-    min-height: 100vh; background: #d0e6ea;
+    min-height: 100vh; background: #d0e6ea; position: relative; z-index: 2;
     h2 {color: var(--txtBlue); width: 100%; text-align: center; font-size: 24px; margin: 25px 0;}
+    &:after { content:""; position: absolute; top: 80px; left: 50%; transform: translate(-50%, 0%); background: var(--primary);  width: 440px; height: 600px; z-index: -1; opacity: 0.1; filter: blur(80px)}
 `
 const ExchangeBx = styled.section `
-    border: 1px solid #fff; border-radius: 30px; box-shadow: 4px 0px 6px 2px rgba(0, 0, 0, 0.04); width: 440px; min-height: 634px; background: rgba(255, 255, 255, 0.40); margin: 0px auto; padding: 26px 30px; max-width: 100%;
+    border: 1px solid #fff; border-radius: 30px; box-shadow: 4px 0px 6px 2px rgba(0, 0, 0, 0.04); width: 440px; /* min-height: 634px; */ background: rgba(255, 255, 255, 0.40); margin: 0px auto; padding: 26px 30px; max-width: 100%;
     ${Media.xs} {padding: 18px 18px; border-radius: 20px; height: auto;}
 `
 
@@ -159,7 +162,6 @@ const TabMain = styled.div `
 
 const AmountBox = styled.div `
     background: #fff; border-radius: 10px;  width: 100%; padding: 20px 19px 32px; margin: 0 0 28px 0;
-    
 `
 const ExBox = styled.div `
     display: flex; border-radius: 5px;  overflow: hidden; transition: all 0.3s ease-in-out; margin-bottom: 10px; background: var(--bgLight); padding: 12px 12px; 
@@ -208,6 +210,11 @@ const ChartSec = styled.div `
     background: #fff; border-radius: 20px; overflow: hidden; padding: 10px 10px 0; width: 865px;
 `
 const TabContainer = styled.div `
+`
+const SeeAllBtn = styled.a ` width: 100%; text-align: center; font-weight: 600; font-size: 18px; margin-top: 36px;
+    a {
+        color: var(--primary); 
+    }
 `
 
 export default ExchangePage;

@@ -29,7 +29,7 @@ will appear here.</h4>
             </ConnectSec> */}
             {/* *********** Connect/Disconnect Wallet *********** */}
 
-            {/* *********** Liquidity List *********** */}
+            {/* *********** Search Liquidity *********** */}
             {/* <Search>
                 <img src={searchIco} alt='searchIco' width={15} />
                 <input type='text' name='' placeholder='Search by Token' />
@@ -71,8 +71,9 @@ will appear here.</h4>
                 <span>Page 1 of 16</span>
                 <a><img src={arrowRight} /></a>
             </PageNav> */}
-            {/* *********** Liquidity List *********** */}
+            {/* *********** Search Liquidity *********** */}
 
+            {/* *********** Add Liquidity *********** */}
             <AddLiquidity>
                 <ALTop>
                     <h3>Add Liquidity</h3>
@@ -130,6 +131,7 @@ will appear here.</h4>
                 <Gs.BtnSm className='lg'>Approve UNI</Gs.BtnSm>
                 <Gs.BtnSm className='lg secondary'>Supply</Gs.BtnSm>
             </AddLiquidity>
+            {/* *********** Add Liquidity *********** */}
         </>
     )
 }

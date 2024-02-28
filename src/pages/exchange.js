@@ -56,8 +56,8 @@ const ExchangePage = (props) => {
                     <ExchangeBx>
                         <ExchangeTop>
                             <TabMain>
-                                <a className={activeTab === 0 ? 'active' : ''} onClick={() => handleTabClick(0)} >Exchange</a>
                                 <a className={activeTab === 1 ? 'active' : ''} onClick={() => handleTabClick(1)}>Pool</a>
+                                <a className={activeTab === 0 ? 'active' : ''} onClick={() => handleTabClick(0)} >Exchange</a>
                             </TabMain>
                             
                             <a className='rightBtns'><img src={resetIco} alt='reset' /></a>

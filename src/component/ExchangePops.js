@@ -15,7 +15,7 @@ const ExchangePops = ({onClose }) => {
     return (
         <Gs.PopupMain>
             <Gs.OverLay onClick={onClose} />
-            <Gs.Popup>
+            {/* <Gs.Popup>
                 <h3>Setting 
                     <a onClick={onClose} className='close'><img width={12} src={cross} alt='cross'/></a>
                 </h3>
@@ -36,9 +36,9 @@ const ExchangePops = ({onClose }) => {
                     <Gs.BtnSm className='secondary'>Cancel</Gs.BtnSm>
                     <Gs.BtnSm>Save</Gs.BtnSm>
                 </BtnCont>
-            </Gs.Popup>
+            </Gs.Popup> */}
 
-            {/* <Gs.Popup>
+            <Gs.Popup>
                 <Wating>
                     <img width={55} src={Clock} />
                     <h4>Waiting For Confirmation</h4>
@@ -46,7 +46,7 @@ const ExchangePops = ({onClose }) => {
                     <p>Confirm this transaction in your wallet</p>
                 </Wating>                
                 <Gs.BtnSm className='lg'>Close</Gs.BtnSm>
-            </Gs.Popup> */}
+            </Gs.Popup>
 
             {/* <Gs.Popup>
                 <SuccessTxt>

@@ -45,6 +45,7 @@ Gs.BtnSm = styled.a`
   &.lg {width:100%;
     & + & {margin-top: 20px;}
   }
+  &.sm {font-size: 16px; padding: 7px 14px; height: auto; letter-spacing: -0.01em;}
   &:hover {background: var(--txtColor);}
   &.secondary {background: none; border: 1px solid var(--txtLight2); color: var(--txtLight);
     &:hover {border: 1px solid var(--txtColor); background: var(--txtColor); color: #fff;}

@@ -859,3 +859,11 @@ img {vertical-align: top; max-width: 100%;}
     .owl-stage > .owl-item:first-child {display: none;}
     .owl-dots .owl-dot:last-child {display: none;}
 } */
+
+.MainBox .range-slider.single-thumb {margin: 0 0 30px;}
+.MainBox .single-thumb .range-slider__thumb[data-lower] {
+    width: 0; height: 0;
+}
+.MainBox .range-slider .range-slider__thumb {background: var(--primary); width: 15px; height: 15px;}
+.MainBox .range-slider .range-slider__range {background: var(--primary); border-radius: 10px;}
+.MainBox .range-slider {background: var(--bgLight2); height: 5px;}

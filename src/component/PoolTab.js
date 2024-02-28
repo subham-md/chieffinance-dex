@@ -3,6 +3,9 @@ import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import Media from './../theme/media-breackpoint' 
 import Gs from '../theme/globalStyles' 
+import ApproveTokens from '../component/ApproveTokens';
+import RangeSlider from 'react-range-slider-input';
+import 'react-range-slider-input/dist/style.css';
 import searchIco from '../assets/images/search.png'
 import Eth from '../assets/images/eth.png'
 import chartIco2 from '../assets/images/chartIco2.png'
@@ -12,9 +15,23 @@ import arrowRight from '../assets/images/arrowRight.png'
 import Thr from '../assets/images/tather.png'
 import Dwn from '../assets/images/arrow2.png'
 import Swap from '../assets/images/swap.png'
+import InfoCon from '../assets/images/info.png'
 
 
 const PoolSec = ({onClose, ClickChange }) => { 
+    const [value, setValue] = useState([30, 60]);
+
+    // State variable to track the visibility of each .LLContent
+    const [contentVisibility, setContentVisibility] = useState({});
+
+    // Function to toggle the visibility of a specific .LLContent based on its index
+    const toggleContentVisibility = (index) => {
+        setContentVisibility((prevVisibility) => ({
+        ...prevVisibility,
+        [index]: !prevVisibility[index],
+        }));
+    };
+
     return (
         <>
             {/* *********** Connect/Disconnect Wallet *********** */}
@@ -74,7 +91,7 @@ will appear here.</h4>
             {/* *********** Search Liquidity *********** */}
 
             {/* *********** Add Liquidity *********** */}
-            <AddLiquidity>
+            {/* <AddLiquidity>
                 <ALTop>
                     <h3>Add Liquidity</h3>
                     <p>Add Liquidity to receive LP Tokens</p>
@@ -130,18 +147,152 @@ will appear here.</h4>
                 </InfoSec>
                 <Gs.BtnSm className='lg'>Approve UNI</Gs.BtnSm>
                 <Gs.BtnSm className='lg secondary'>Supply</Gs.BtnSm>
-            </AddLiquidity>
+            </AddLiquidity> */}
             {/* *********** Add Liquidity *********** */}
+
+            {/* *********** Remove Liquidity *********** */}
+            {/* <AddLiquidity>
+                <ALTop>
+                    <h3>Remove TKN1/USDC Liquidity</h3>
+                    <p>To Receive TKN1 and USDC</p>
+                </ALTop>
+                <SliderBx>
+                    <label>Amount</label>
+                    <h4 className='SliderVal'>50.000</h4>
+                    <RangeSlider
+                        className="single-thumb"
+                        defaultValue={[0, 50]}
+                        thumbsDisabled={[true, false]}
+                        rangeSlideDisabled={true}
+                    />
+                    <Gs.Percent>
+                        <a className='active'>25%</a>
+                        <a>50%</a>
+                        <a>75%</a>
+                        <a>100%</a>
+                    </Gs.Percent>
+                </SliderBx>
+                <Switch><a className='switch'><img src={Swap} alt='Swap'/></a></Switch>
+                
+                <InfoSec className='mt0'>
+                    <h4>You will receive</h4>
+                    <p><div className='img'><img alt='inco' width={17} src={InfoCon}/></div>TKN1 <span>-</span></p>
+                    <p><div className='img'><img alt='inco' width={17} src={Eth}/></div> USDC <span>-</span></p>
+                </InfoSec>
+                <InfoSec className='mt0'>
+                    <h4>Prices and pool share:</h4>
+                    <p>1 TKN1 = <span>0.001 USDC</span></p>
+                    <p>1 USDC = <span>1000 TKN1</span></p>
+                </InfoSec>
+                <InfoSec className='mt0'>
+                    <h4>LP Tokens in your wallet</h4>
+                    <p className='bold'>
+                        <div className='img'><img alt='inco' width={17} src={Eth}/><img alt='inco' width={17} src={Eth}/></div>
+                        TKN1 - USDC <span>0.003004</span></p>
+                    <p>Share of pool: <span>95.000000%</span></p>
+                    <p>Pool TKN1: <span>94999.9</span></p>
+                    <p>Pool USDC: <span>94.9999</span></p>
+                </InfoSec>
+                <Gs.BtnSm className='lg secondary'>Enable</Gs.BtnSm>
+                <Gs.BtnSm className='lg secondary'>Enter an amount</Gs.BtnSm>
+            </AddLiquidity> */}
+            {/* *********** Remove Liquidity *********** */}
+
+
+            {/* *********** Your Liquidity *********** */}
+            <AddLiquidity>
+                <ALTop>
+                    <h3>Your Liquidity</h3>
+                    <p>Remove Liquidity to receive tokens back</p>
+                </ALTop>
+                
+                <LiquidityList>
+                    <li>
+                        <div className={`LLTitle ${contentVisibility[1] ? 'show' : ''}`}>
+                            <i><img alt='inco' width={17} src={InfoCon}/><img alt='inco' width={17} src={Eth}/></i> TKN1 - USDC
+                            <p>0.00300416</p>
+                            <div onClick={() => toggleContentVisibility(1)} className='arrowDown'><img src={Dwn} alt='Down' /></div>
+                            <Gs.BtnSm className="sm secondary">Remove Liquidity</Gs.BtnSm>
+                        </div>
+                        {contentVisibility[1] && (
+                        <div className='LLContent'>
+                            <p><i><img alt='inco' width={17} src={Eth}/></i>TKN1 <span>94999.9</span></p>
+                            <p><i><img alt='inco' width={17} src={Eth}/></i>USDC <span>94.9999</span></p>
+                            <p>Reward <span>-</span></p> 
+                            <p>Share of pool <span>95.00%</span></p> 
+                            <Gs.BtnSm className='lg'>Add SWAP-LP toekn of MetaMask</Gs.BtnSm>
+                        </div>
+                        )}
+                    </li>
+                    <li>
+                        <div className={`LLTitle ${contentVisibility[2] ? 'show' : ''}`}>
+                            <i><img alt='inco' width={17} src={InfoCon}/><img alt='inco' width={17} src={Eth}/></i> TKN1 - USDC
+                            <p>0.00300416</p>
+                            <div onClick={() => toggleContentVisibility(2)} className='arrowDown'><img src={Dwn} alt='Down' /></div>
+                            <Gs.BtnSm className="sm secondary">Remove Liquidity</Gs.BtnSm>
+                        </div>
+                        {contentVisibility[2] && (
+                        <div className='LLContent'>
+                            <p><i><img alt='inco' width={17} src={Eth}/></i>TKN1 <span>94999.9</span></p>
+                            <p><i><img alt='inco' width={17} src={Eth}/></i>USDC <span>94.9999</span></p>
+                            <p>Reward <span>-</span></p> 
+                            <p>Share of pool <span>95.00%</span></p> 
+                            <Gs.BtnSm className='lg'>Add SWAP-LP toekn of MetaMask</Gs.BtnSm>
+                        </div>
+                        )}
+                    </li>
+                </LiquidityList>
+                <Gs.BtnSm className='lg'>+ Add Liquidity</Gs.BtnSm>
+            </AddLiquidity>
+            {/* *********** Your Liquidity *********** */}
+
+            {/* *********** Waiting Popup *********** */}
+            {/* <ApproveTokens/> */}
+            {/* *********** Waiting Popup *********** */}
         </>
     )
 }
 
+const LiquidityList = styled.ul `
+    margin: 0; padding: 0;
+`
 const AddLiquidity = styled.div `
-
+    li {list-style: none; background: #fff; border-radius: 5px; padding: 0 20px; margin-bottom: 12px;}
+    .LLTitle {font-size: 18px; font-weight: 600; color: var(--txtLight); padding: 6px 0px; height: 63px; position: relative;
+        p {margin: 0; font-size: 18px;}
+        i {
+            img {margin-right: 3px; vertical-align: top; margin-top: 3px;}
+        }
+        .arrowDown {position: absolute; right: -5px; top: 50%; margin-top: -13px; width: 26px; height: 26px; display: flex; align-self: center; justify-content: center; cursor: pointer; transition: all 0.5s ease-in-out;
+            img {width: 13px; object-fit: contain;}
+            &:hover {background-color: var(--bgLight);}
+        }
+        ${Gs.BtnSm} {position: absolute; top: 50%; margin-top: -20px; right: 28px; opacity: 0; visibility: hidden;}
+        &.show {
+            ${Gs.BtnSm} {opacity: 1; visibility: visible;}
+        }
+    }
+    .LLContent {
+        width: 100%; padding: 8px 0 14px; 
+        &.mt0 {margin-top: 0;}
+        p {display: flex; align-items: center; color: var(--txtLight); margin: 0 0 11px 0; font-weight: 500;
+            a {vertical-align: top; display: inline-block; margin: 5px 0 0 8px;}
+            span {margin-left: auto;}
+            &.bold {font-weight: 600;}
+        }
+        i {margin-right: 7px;}
+        ${Gs.BtnSm} { margin-top: 10px;}
+    }
+    ${Media.xs} {
+        .LLTitle {font-size: 16px;
+            ${Gs.BtnSm} {padding: 5px 5px; font-size: 13px; width: 76px;}
+            p {font-size: 16px;}
+        }
+    }
 `
 const ALTop = styled.div `margin-bottom: 20px; width: 100%;
     h3 {margin: 0 0 8px; font-weight: 600; font-size: 24px;}
-    p {margin: 0; font-size: 15px;}
+    p {margin: 0; font-size: 15px; font-weight: 500;}
 `
 const Search = styled.div`
     width: 100%; position: relative; margin: 30px 0 0 0;
@@ -186,6 +337,11 @@ const PageNav = styled.div `
 const AmountBox = styled.div `
     background: #fff; border-radius: 10px;  width: 100%; padding: 20px 19px 32px; margin: 0 0 28px 0;
 `
+const SliderBx = styled.div `
+    background: #fff; border-radius: 10px;  width: 100%; padding: 12px 19px 20px; margin: 42px 0 80px 0; position: relative;
+    label {position: absolute; top: -37px; left: -2px;}
+    .SliderVal {margin: 0 0 30px 0; font-weight: 600; color: var(--txtColor); font-size: 24px;}
+`
 const ExBox = styled.div `
     display: flex; border-radius: 5px;  overflow: hidden; transition: all 0.3s ease-in-out; margin-bottom: 10px; background: var(--bgLight); padding: 12px 12px; 
     &:focus-within {box-shadow: 0 0 7px 2px rgba(0,0,0,0.16);}
@@ -221,12 +377,18 @@ const Switch = styled.div `display: block; text-align: center; height: 0;
         img {filter: brightness(100);}
         &:hover {transform: rotate(180deg); box-shadow: 0 0 0 5px rgba(27,193,154,0.2); }
     }
+    ${SliderBx} + & a {top: -69px;}
 `
 const InfoSec = styled.div `
     background: #fff; border-radius: 10px;  width: 100%; padding: 15px 19px 5px; margin: -10px 0 21px 0;
+    &.mt0 {margin-top: 0;}
     p {display: flex; align-items: center; color: var(--txtLight); margin: 0 0 11px 0;
         a {vertical-align: top; display: inline-block; margin: 5px 0 0 8px;}
         span {margin-left: auto;}
+        &.bold {font-weight: 600;}
+    }
+    .img {margin-right: 7px;
+        img {margin-right: 3px;}
     }
     h4 {font-size: 16px; font-weight: 600; color: var(--txtLight); margin: 0 0 16px;}
 `

@@ -8,11 +8,6 @@ import Header from './component/header'
 import Footer from './component/footer'; 
 import Home from './pages/home' 
 import Exchange from './pages/exchange' 
-import {
-  EthereumClient,
-  modalConnectors,
-  walletConnectProvider,
-} from '@web3modal/ethereum';
 
 import { Web3Modal } from '@web3modal/react';
 
@@ -22,19 +17,8 @@ import { arbitrum, mainnet, polygon } from 'wagmi/chains';
 
 const chains = [arbitrum, mainnet, polygon];
 
-// Wagmi client
-const { provider } = configureChains(chains, [
-  walletConnectProvider({ projectId: process.env.REACT_APP_WEB3_MODAL_PROJECT_ID }),
-]);
 
-const wagmiClient = createClient({
-  autoConnect: true,
-  connectors: modalConnectors({ appName: 'Hepton', chains }),
-  provider,
-});
 
-// Web3Modal Ethereum Client
-const ethereumClient = new EthereumClient(wagmiClient, chains);
 
 function App() {   
 
@@ -47,7 +31,6 @@ function App() {
 
   return (
     <Router  > 
-      <WagmiConfig client={wagmiClient}>
         <ThemeProvider theme={selectedTheme}>
           <section className='MainBox clearfix'>
             <Gs.GlobalStyle /> 
@@ -59,11 +42,7 @@ function App() {
               <Footer></Footer>
             </section>
         </ThemeProvider>
-    </WagmiConfig>
-    <Web3Modal
-      projectId={process.env.REACT_APP_WEB3_MODAL_PROJECT_ID}
-      ethereumClient={ethereumClient}
-    />
+    
     </Router>
 
   );

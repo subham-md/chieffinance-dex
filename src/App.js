@@ -8,6 +8,7 @@ import Header from './component/header'
 import Footer from './component/footer'; 
 import Home from './pages/home' 
 import Exchange from './pages/exchange' 
+import CrossChain from './pages/crossChain' 
 
 import { Web3Modal } from '@web3modal/react';
 
@@ -38,6 +39,7 @@ function App() {
               <Switch>
                 <Route path="/" exact> <Home isDarkTheme={isDark}  />  </Route>   
                 <Route path="/exchange" exact> <Exchange isDarkTheme={isDark}  />  </Route>   
+                <Route path="/crosschain" exact> <CrossChain isDarkTheme={isDark}  />  </Route>   
               </Switch>   
               <Footer></Footer>
             </section>

@@ -9,6 +9,7 @@ import Clock from '../assets/images/clock.png'
 import Tick from '../assets/images/tick.png'
 import Copy from '../assets/images/copy.png'
 import confirmIco from '../assets/images/confirm.png'
+import failIcon from '../assets/images/fail.png'
 
 
 const ExchangePops = ({onClose }) => { 
@@ -38,7 +39,7 @@ const ExchangePops = ({onClose }) => {
                 </BtnCont>
             </Gs.Popup> */}
 
-            <Gs.Popup>
+            {/* <Gs.Popup>
                 <Wating>
                     <img width={55} src={Clock} />
                     <h4>Waiting For Confirmation</h4>
@@ -46,7 +47,7 @@ const ExchangePops = ({onClose }) => {
                     <p>Confirm this transaction in your wallet</p>
                 </Wating>                
                 <Gs.BtnSm className='lg'>Close</Gs.BtnSm>
-            </Gs.Popup>
+            </Gs.Popup> */}
 
             {/* <Gs.Popup>
                 <SuccessTxt>
@@ -69,6 +70,13 @@ const ExchangePops = ({onClose }) => {
                     <p><a className='color-blue'>View in Explorer</a></p>
                 </ConformTxt>                
             </Gs.Popup> */}
+            <Gs.Popup>
+                <FailedTxt>
+                    <img width={58} src={failIcon} />
+                    <h4>Transaction Failed.</h4>
+                    <Gs.BtnSm className='lg'>Dismiss</Gs.BtnSm>
+                </FailedTxt>                
+            </Gs.Popup>
 
             
         </Gs.PopupMain>
@@ -120,6 +128,15 @@ const ConformTxt = styled.div `
     text-align: center; margin: 15px 0;
     img {margin-bottom: 12px;}
     h4 {color: var(--primary); font-size: 24px; font-weight: 500; margin: 0;}
+    p {color: var(--txtLight); font-size: 18px; font-weight: 400; margin: 10px 0 0;}
+    span {color: var(--primary);}
+    b {font-weight: 500;}
+    .color-blue {color: var(--txtBlue);}
+`
+const FailedTxt = styled.div `
+    text-align: center; margin: 15px 0;
+    img {margin-bottom: 25px;}
+    h4 {color: #ff0000; font-size: 24px; font-weight: 500; margin: 0 0 28px;}
     p {color: var(--txtLight); font-size: 18px; font-weight: 400; margin: 10px 0 0;}
     span {color: var(--primary);}
     b {font-weight: 500;}

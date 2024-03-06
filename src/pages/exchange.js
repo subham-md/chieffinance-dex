@@ -127,7 +127,7 @@ const ExchangePage = (props) => {
             {isSelectTokenVisible && <SelectToken ClickChange={toggleMngToken} onClose={toggleSelectToken} />}
             {isConfirmPopVisible && <ConfirmExchange onClose={toggleConfirmPop} />}
             {isMngTokenVisible && <ManageToken ClickChange={toggleMngToken} />}
-            {/* <ExchangePops /> */}
+            <ExchangePops />
         </>
     )
 }

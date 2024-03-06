@@ -151,7 +151,7 @@ will appear here.</h4>
             {/* *********** Add Liquidity *********** */}
 
             {/* *********** Remove Liquidity *********** */}
-            {/* <AddLiquidity>
+            <AddLiquidity>
                 <ALTop>
                     <h3>Remove TKN1/USDC Liquidity</h3>
                     <p>To Receive TKN1 and USDC</p>
@@ -195,7 +195,7 @@ will appear here.</h4>
                 </InfoSec>
                 <Gs.BtnSm className='lg secondary'>Enable</Gs.BtnSm>
                 <Gs.BtnSm className='lg secondary'>Enter an amount</Gs.BtnSm>
-            </AddLiquidity> */}
+            </AddLiquidity>
             {/* *********** Remove Liquidity *********** */}
 
 

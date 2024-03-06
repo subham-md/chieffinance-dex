@@ -146,7 +146,7 @@ const Search = styled.div`
     }
 `
 const ScrollList = styled.ul `
-    padding: 0; margin: 20px 0 0; height: 384px; overflow-y: scroll; overflow-x: hidden;
+    padding: 0; margin: 20px 0 0; max-height: 384px; overflow-y: scroll; overflow-x: hidden;
     ::-webkit-scrollbar {
         width: 7px;
     }

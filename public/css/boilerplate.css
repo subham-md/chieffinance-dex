@@ -853,6 +853,7 @@ img {vertical-align: top; max-width: 100%;}
     --txtYellow: #ff9000;
     --bgLight: #f5f9fa;
     --bgLight2: #f0f8f8;
+    --offWhite: #f4f4f4;
 }
 .MainBox  {overflow-x: clip;}
 /* @media screen and (max-width: 768px) {

@@ -36,6 +36,7 @@ function Header(props) {
           <Link>Pool</Link>
           <Link to='/exchange'>Exchange</Link>
           <Link>Bridge</Link>
+          <Link>Limit Order</Link>
           <Gs.BtnSm onClick={toggleSelectToken}><img src={WalletIco} alt='Wallet'/>Connect Wallet</Gs.BtnSm>
         </Menu>
         <div className='HeaderRight'>
@@ -81,7 +82,7 @@ const HeaderBx = styled(FlexDiv)`
 `
 const Menu = styled.div `
   a {color: #fff; font-size: 20px; color: var(--txtColor); border-right: 1px solid var(--txtColor); padding: 0 35px; font-weight: 500;
-    &:last-child {border-right: 0px;}
+    &:nth-last-child(2) {border-right: 0px;}
     &:hover {color: var(--primary)}
   }
   ${Gs.BtnSm} {display: none;}

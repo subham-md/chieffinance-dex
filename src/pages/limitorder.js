@@ -21,11 +21,13 @@ import Swap from '../assets/images/swap.png'
 import InfoIco from '../assets/images/info.png'
 import SettingIco from '../assets/images/setting.png'
 import ChartImg from '../assets/images/chart.png'
+import arrowLeft from '../assets/images/arrowLeft.png'
+import arrowRight from '../assets/images/arrowRight.png'
 
 
 
 
-const ExchangePage = (props) => {
+const LimitOrder = (props) => {
     const [isSelectTokenVisible, setSelectTokenVisible] = useState(false);
     const toggleSelectToken = () => {
         setSelectTokenVisible(!isSelectTokenVisible);
@@ -47,23 +49,51 @@ const ExchangePage = (props) => {
     };
     return (
         <>   
-            <ExchangeBg>
+            <ExchangeBg className='limit-order'>
                 <Gs.Container>
-                    <h2>Exchange (DeFi)</h2>
-                    {/* <ChartSec>
-                        <img src={ChartImg} alt='Chart Img' />
-                    </ChartSec> */}
-                    <ExchangeBx>
-                        <ExchangeTop>
-                            <TabMain>
-                                <a className={activeTab === 1 ? 'active' : ''} onClick={() => handleTabClick(1)}>Pool</a>
-                                <a className={activeTab === 0 ? 'active' : ''} onClick={() => handleTabClick(0)} >Exchange</a>
-                            </TabMain>
-                            
-                            <a className='rightBtns'><img src={resetIco} alt='reset' /></a>
-                            <a className='rightBtns'><img src={chartIco} alt='chart' /></a>
-                        </ExchangeTop>
-                        {activeTab === 0 &&
+                    <RightSide>
+                        <ChartSec>
+                            <img src={ChartImg} alt='Chart Img' />
+                        </ChartSec>
+
+                        <OrderTabs>
+                            <div className='tabLink'>
+                                <a className={activeTab === 0 ? 'active' : ''} onClick={() => handleTabClick(0)}><i>Open Orders</i></a>
+                                <a className={activeTab === 1 ? 'active' : ''} onClick={() => handleTabClick(1)}><i>Order History</i></a>
+                            </div>
+                            {activeTab === 0 &&
+                            <OrderTabsContent>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>From</th>
+                                            <th>To</th>
+                                            <th>Limit Price</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td className='noOrder' colSpan={4}>No Open Orders</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <PageNav>
+                                    <a className='disabled'><img src={arrowLeft} /></a>
+                                    <span>Page 1 of 1</span>
+                                    <a className='disabled'><img src={arrowRight} /></a>
+                                </PageNav>
+                            </OrderTabsContent>
+                            }
+                            {activeTab === 1 &&
+                            <OrderTabsContent>
+
+                            </OrderTabsContent>
+                            }
+                        </OrderTabs>
+                    </RightSide>
+                    <ExchangeBx>        
+                        <PageTitle>Limit Order</PageTitle>               
                         <TabContainer>
                             <AmountBox>
                                 <ExBox>
@@ -108,26 +138,37 @@ const ExchangePage = (props) => {
                                     <a>100%</a>
                                 </Gs.Percent>
                             </AmountBox>
-                            <InfoSec>
-                                <p>Price <span>10 WBTC per ETH</span></p>
+                            
+                            <PriceRow>
+                                <div className=''>
+                                    <span>Price:</span>
+                                    <a className=''>Market Price</a>
+                                </div>
+                                <a className=''>At Market Price</a>
+                            </PriceRow>
+                            <PriceRow>
+                                <div className=''>
+                                    <span>Price:</span>
+                                    <a className='active'>Market Price</a>
+                                </div>
+                                <a className='yellow'>At Market Price</a>
+                            </PriceRow>
+                            <InfoSec className='mt0 mb20'>
+                                <h5>9.82540000</h5>
+                            </InfoSec>
+                            <InfoSec className='mt0'>
+                                <p><b>ETH - UNI</b> <span>Expiration Date: 2.01.2024 <i><img width={20} src={InfoIco} /></i></span></p>
                                 <p>Slippage Tolerance <i><img width={20} src={InfoIco} /></i> <a><img width={16} src={SettingIco} /></a> 
                                 <span>0.5%</span></p>
                             </InfoSec>
-                            <Gs.BtnSm onClick={toggleConfirmPop} className='lg'><img src={WalletIco} alt='Wallet'/> Connect Wallet</Gs.BtnSm>
-                        </TabContainer>}
-                        {activeTab === 1 && <TabContainer>
-                            <PoolTab />
-                        </TabContainer>}
+                            <Gs.BtnSm onClick={toggleConfirmPop} className='lg'>Only possible to place sell orders
+above market rate</Gs.BtnSm>
+                            <Gs.BtnSm onClick={toggleConfirmPop} className='lg'>Place an Order</Gs.BtnSm>
+                        </TabContainer>
                     </ExchangeBx>
-                    {activeTab === 1 && <SeeAllBtn><a>See all available pools</a></SeeAllBtn>}
                 </Gs.Container>
             </ExchangeBg>
 
-
-            {isSelectTokenVisible && <SelectToken ClickChange={toggleMngToken} onClose={toggleSelectToken} />}
-            {isConfirmPopVisible && <ConfirmExchange onClose={toggleConfirmPop} />}
-            {isMngTokenVisible && <ManageToken ClickChange={toggleMngToken} />}
-            {/* <ExchangePops /> */}
         </>
     )
 }
@@ -136,10 +177,13 @@ const ExchangeBg = styled.section `
     min-height: 100vh; background: #d0e6ea; position: relative; z-index: 2;
     h2 {color: var(--txtBlue); width: 100%; text-align: center; font-size: 24px; margin: 25px 0;}
     &:after { content:""; position: absolute; top: 80px; left: 50%; transform: translate(-50%, 0%); background: var(--primary);  width: 440px; height: 600px; z-index: -1; opacity: 0.1; filter: blur(80px)}
+    &.limit-order {padding: 70px 0;}
 `
 const ExchangeBx = styled.section `
-    border: 1px solid #fff; border-radius: 30px; box-shadow: 4px 0px 6px 2px rgba(0, 0, 0, 0.04); width: 440px; /* min-height: 634px; */ background: rgba(255, 255, 255, 0.40); margin: 0px auto; padding: 26px 30px; max-width: 100%;
+    border: 1px solid #fff; border-radius: 30px; box-shadow: 4px 0px 6px 2px rgba(0, 0, 0, 0.04); width: 440px; /* min-height: 634px; */ background: rgba(255, 255, 255, 0.40); margin: 0px auto; padding: 26px 30px; max-width: 100%; align-self: flex-start;
+    ${Media.lg} {margin-right: 0;}
     ${Media.xs} {padding: 18px 18px; border-radius: 20px; height: auto;}
+    ${Media.md} {margin: 0 auto;}
 `
 
 // Top most part for the box
@@ -204,10 +248,18 @@ const InfoSec = styled.div `
     p {display: flex; align-items: center; color: var(--txtLight); margin: 0 0 11px 0;
         a {vertical-align: top; display: inline-block; margin: 5px 0 0 8px;}
         span {margin-left: auto;}
+        &.bold {font-weight: 600;}
     }
+    h5 {font-size: 16px; font-weight: 500; margin: 0 0 10px 0;}
+    &.mt0 {margin-top: 0;}
+    &.mb20 {margin-bottom: 20px;}
 `
 const ChartSec = styled.div `
-    background: #fff; border-radius: 20px; overflow: hidden; padding: 10px 10px 0; width: 865px;
+    background: #fff; border-radius: 20px; overflow: hidden; padding: 40px 56px 0; width: 865px; max-width:  100%;
+    img {max-width:  100%;}
+    ${Media.lg} {
+        padding: 40px 20px 0;
+    }
 `
 const TabContainer = styled.div `
 `
@@ -216,5 +268,67 @@ const SeeAllBtn = styled.a ` width: 100%; text-align: center; font-weight: 600; 
         color: var(--primary); 
     }
 `
+const RightSide = styled.div `
+    max-width: calc(100% - 440px); margin-right: auto;
+    ${Media.lg} {
+        max-width: calc(100% - 465px); margin-right: auto;
+    }
+    ${Media.md} {
+        width: 100%; max-width: 100%; margin-bottom: 30px;
+    }
+`
+const OrderTabs = styled.div `
+    margin-top: 20px; display: flex; flex-flow: column; 
+    .tabLink {
+        width: 100%; display: grid; align-items: flex-end; grid-template-columns: 1fr 1fr; height: 50px;
+        a {font-size: 18px; flex-grow: 1; width: 100%; text-align: center; border-radius: 20px; background: var(--bgLight); height: 40px; color: var(--txtLight2); font-weight: 700; display: flex; justify-content: center; align-items: center;
+            i {font-style: normal; display: inline-block;}
+            &:nth-child(1) {border-radius: 20px 0 0 0;}
+            &:nth-child(2) {border-radius: 0 20px 0 0; justify-self: flex-end;}
+            &.active {background: #fff; border-radius: 20px 20px 0 0; /* transform: scale(1.2); transform-origin: center bottom; */ height: 50px; width: calc(100% + 10px); z-index: 1; color: #000;
+                i {}
+            }
+        }
+    }
+    ${Media.md} {
+        .tabLink { 
+            a {font-size: 16px;}
+        }
+    }
+`
+const OrderTabsContent = styled.div `
+    background: #fff; min-height: 200px; border-radius: 0 0 20px 20px;
+    table {width: 100%; 
+        th {color: var(--txtLight2); font-weight: 500; height: 50px; border-bottom: 1px solid var(--txtLight2);}
+        .noOrder {height: 200px; text-align: center; color: var(--txtLight2); font-weight: 500; font-size: 16px;}
+    }
+`
+const PageNav = styled.div ` 
+    display: flex; align-items: center; width: 100%; justify-content: center; margin-top: 15px; margin-bottom: 20px;
+    span {margin: 0 20px; font-weight: 500;}
+    a {display: inline-block; height: 10px;
+        &.disabled {filter: grayscale(100) brightness(0.4);}
+    }
+    img {height: 10px;}
+`
+const PriceRow = styled.div `
+    display: flex; align-items: center; margin-bottom: 10px; justify-content: space-between; margin-top: -10px;
+    div {
+        display: flex; align-items: center;
+        a {border: 1px solid var(--txtLight); padding: 5px 13px; border-radius: 5px; margin-left: 10px;
+            &.active, &:hover {background: var(--primary); color: #fff; border: 1px solid var(--primary);}
+        }
+    }
+    & > a {color: var(--primary);
+        &.yellow {color: var(--txtYellow);}
+    }
+    & + & {margin-top: 0;}
+`
+const PageTitle = styled.h3 `
+    font-size: 22px; font-weight: 600; color: #000; margin: 0 0 21px; text-align: left;
+    ${Media.xs} {
+        font-size: 20px; margin-bottom: 15px;
+    }
+`
 
-export default ExchangePage;
+export default LimitOrder;
